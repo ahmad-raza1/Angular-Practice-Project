@@ -7,4 +7,21 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'myApp';
+  myName = 'Ahmad Raza';
+  inputValue = '';
+  disabledProperty = true;
+  show = false;
+  color = 'green';
+  getName(name: any) {
+    alert(name)
+  }
+  myEvent(value: any) {
+    console.warn(value);
+  }
+  getValue(event: any) {
+    this.inputValue = event.target.value;
+  }
+  toggleProperty() {
+    this.disabledProperty = !this.disabledProperty;
+  }
 }
