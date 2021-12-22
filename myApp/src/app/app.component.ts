@@ -12,6 +12,10 @@ export class AppComponent {
   disabledProperty = true;
   show = false;
   color = 'green';
+  myList = ["Marley", "Jennifer", "Alan", "Holt"];
+  getUserValues(value: any) {
+    console.log(value);
+  }
   getName(name: any) {
     alert(name)
   }

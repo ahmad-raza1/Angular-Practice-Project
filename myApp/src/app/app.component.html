@@ -1,3 +1,23 @@
+<!-- simple form -->
+<form #myForm="ngForm" (ngSubmit)="getUserValues(myForm.value)" layout="column"
+style="align-items: center;">
+    <div fxFlex="10" layout="row">
+        <label for="name">Name: </label>
+        <input type="text" ngModel name="name" placeholder="Enter your name">
+    </div>
+    <div fxFlex="10">
+        <label for="age">Age: </label>
+        <input type="number" ngModel name="age" placeholder="Enter your age">
+    </div>
+    <div fxFlex="12"
+    style="align-items: center; display: flex;">
+        <label for="address" style="margin-right: 3px;">Address: </label>
+        <textarea required type="textarea" ngModel name="address" placeholder="Enter your address"></textarea>
+    </div>
+    <button>Submit</button>
+</form>
+
+<hr>
 <h1>Hello World!</h1>
 <!-- components -->
 <app-login></app-login>
@@ -42,3 +62,8 @@ style="background-color: lightgreen;">
 <ng-template [ngIf]="color=='green'">
     <h1 style="color: green;">green block</h1>
 </ng-template>
+<!-- for loop -->
+<ul *ngFor="let item of myList">
+    <li>{{ item }}</li>
+</ul>
+<hr>
