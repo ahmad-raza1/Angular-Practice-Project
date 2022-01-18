@@ -18,8 +18,8 @@ import { AdminModule } from './admin/admin.module';
     FormsModule,
     FlexLayoutModule,
     HttpClientModule,
-    UsersModule,
-    AdminModule
+    // UsersModule,
+    // AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]

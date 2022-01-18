@@ -1,11 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ListComponent } from './users/list/list.component';
-import { LoginComponent } from './users/login/login.component';
 
 const routes: Routes = [
-  { path: 'list', component: ListComponent },
-  { path: 'login', component: LoginComponent }
+  {
+    path: 'admin', loadChildren: () => import('./admin/admin.module')
+      .then(m => m.AdminModule)
+  },
+  {
+    path: 'users', loadChildren: () => import('./users/users.module')
+      .then(m => m.UsersModule)
+  }
 ];
 
 @NgModule({
