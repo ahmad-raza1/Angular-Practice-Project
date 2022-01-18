@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
 import { UsersService } from './users.service';
 @Component({
   selector: 'app-root',
@@ -7,35 +7,58 @@ import { UsersService } from './users.service';
 })
 export class AppComponent {
 
-  data: any = [];
+  title = 'blog';
 
-  constructor(private user: UsersService) {
-    this.user.getData().subscribe((data) => {
-      console.warn(data);
-      this.data = data;
-    })
+  constructor(
+    private vcr: ViewContainerRef,
+    private cfr: ComponentFactoryResolver
+  ) { }
+
+  async loadAdmin(): Promise<void> {
+    this.vcr.clear();
+    const { ListComponent } = await import('./admin/list/list.component');
+    this.vcr.createComponent(
+      this.cfr.resolveComponentFactory(ListComponent)
+    );
   }
 
-  title = 'myApp';
-  myName = 'Ahmad Raza';
-  inputValue = '';
-  disabledProperty = true;
-  show = false;
-  color = 'green';
-  myList = ["Marley", "Jennifer", "Alan", "Holt"];
-  getUserValues(value: any) {
-    console.log(value);
+  async loadUser(): Promise<void> {
+    this.vcr.clear();
+    const { ListComponent } = await import('./users/list/list.component');
+    this.vcr.createComponent(
+      this.cfr.resolveComponentFactory(ListComponent)
+    );
   }
-  getName(name: any) {
-    alert(name)
-  }
-  myEvent(value: any) {
-    console.warn(value);
-  }
-  getValue(event: any) {
-    this.inputValue = event.target.value;
-  }
-  toggleProperty() {
-    this.disabledProperty = !this.disabledProperty;
-  }
+
+  // data: any = [];
+
+  // constructor(private user: UsersService) {
+  //   this.user.getData().subscribe((data) => {
+  //     console.warn(data);
+  //     this.data = data;
+  //   })
+  // }
+
+  // title = 'myApp';
+  // myName = 'Ahmad Raza';
+  // inputValue = '';
+  // disabledProperty = true;
+  // show = false;
+  // color = 'green';
+  // myList = ["Marley", "Jennifer", "Alan", "Holt"];
+  // getUserValues(value: any) {
+  //   console.log(value);
+  // }
+  // getName(name: any) {
+  //   alert(name)
+  // }
+  // myEvent(value: any) {
+  //   console.warn(value);
+  // }
+  // getValue(event: any) {
+  //   this.inputValue = event.target.value;
+  // }
+  // toggleProperty() {
+  //   this.disabledProperty = !this.disabledProperty;
+  // }
 }
