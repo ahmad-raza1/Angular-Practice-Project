@@ -1,3 +1,14 @@
+<!-- routing -->
+<ul>
+    <li>
+        <a routerLink="login">Go to Login Page</a>
+    </li>
+    <li>
+        <a routerLink="list">Go to List Page</a>
+    </li>
+</ul>
+<router-outlet></router-outlet>
+
 <!-- render data coming from an API -->
 <table border="1" class="table">
     <tr>
@@ -14,8 +25,7 @@
 
 <hr>
 <!-- simple form -->
-<form #myForm="ngForm" (ngSubmit)="getUserValues(myForm.value)" layout="column"
-style="align-items: center;">
+<form #myForm="ngForm" (ngSubmit)="getUserValues(myForm.value)" layout="column" style="align-items: center;">
     <div fxFlex="10" layout="row">
         <label for="name">Name: </label>
         <input type="text" ngModel name="name" placeholder="Enter your name">
@@ -24,8 +34,7 @@ style="align-items: center;">
         <label for="age">Age: </label>
         <input type="number" ngModel name="age" placeholder="Enter your age">
     </div>
-    <div fxFlex="12"
-    style="align-items: center; display: flex;">
+    <div fxFlex="12" style="align-items: center; display: flex;">
         <label for="address" style="margin-right: 3px;">Address: </label>
         <textarea required type="textarea" ngModel name="address" placeholder="Enter your address"></textarea>
     </div>
@@ -40,12 +49,10 @@ style="align-items: center;">
 <!-- events -->
 <button (click)="getName(myName)">Get my name</button> <br><br>
 <input type="text" #box (blur)="myEvent('Blur Event!')">
-<h1 (mouseover)="myEvent('Hover Event')"
-style="background-color: aqua;">
+<h1 (mouseover)="myEvent('Hover Event')" style="background-color: aqua;">
     Mouse Hover Event
 </h1>
-<h1 (mouseleave)="myEvent('Mouse Leave Event')"
-style="background-color: lightgreen;">
+<h1 (mouseleave)="myEvent('Mouse Leave Event')" style="background-color: lightgreen;">
     Mouse Leave Event
 </h1>
 <input type="text" #box1 (keyup)="getValue($event)">
