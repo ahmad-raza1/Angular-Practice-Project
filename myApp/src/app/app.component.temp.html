@@ -1,0 +1,95 @@
+<!------------------ 
+    users module 
+------------------->
+
+<!-- routing -->
+<ul>
+    <li>
+        <a routerLink="login">Go to Login Page</a>
+    </li>
+    <li>
+        <a routerLink="list">Go to List Page</a>
+    </li>
+</ul>
+<router-outlet></router-outlet>
+
+<!-- render data coming from an API -->
+<table border="1" class="table">
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Status</th>
+    </tr>
+    <tr *ngFor="let item of data">
+        <td>{{ item.id }}</td>
+        <td>{{ item.title }}</td>
+        <td>{{ item.completed ? 'Completed': 'Not Completed' }}</td>
+    </tr>
+</table>
+
+<hr>
+<!-- simple form -->
+<form #myForm="ngForm" (ngSubmit)="getUserValues(myForm.value)" layout="column" style="align-items: center;">
+    <div fxFlex="10" layout="row">
+        <label for="name">Name: </label>
+        <input type="text" ngModel name="name" placeholder="Enter your name">
+    </div>
+    <div fxFlex="10">
+        <label for="age">Age: </label>
+        <input type="number" ngModel name="age" placeholder="Enter your age">
+    </div>
+    <div fxFlex="12" style="align-items: center; display: flex;">
+        <label for="address" style="margin-right: 3px;">Address: </label>
+        <textarea required type="textarea" ngModel name="address" placeholder="Enter your address"></textarea>
+    </div>
+    <button>Submit</button>
+</form>
+
+<hr>
+<h1>Hello World!</h1>
+<!-- components -->
+<app-login></app-login>
+<app-signup></app-signup>
+<!-- events -->
+<button (click)="getName(myName)">Get my name</button> <br><br>
+<input type="text" #box (blur)="myEvent('Blur Event!')">
+<h1 (mouseover)="myEvent('Hover Event')" style="background-color: aqua;">
+    Mouse Hover Event
+</h1>
+<h1 (mouseleave)="myEvent('Mouse Leave Event')" style="background-color: lightgreen;">
+    Mouse Leave Event
+</h1>
+<input type="text" #box1 (keyup)="getValue($event)">
+<p>{{ inputValue }}</p>
+<hr>
+<!-- interpolation cannot handle disabled property -->
+<input type="text" disabled="{{ disabledProperty }}" value="{{ disabledProperty }}">
+<!-- property binding can -->
+<input type="text" [disabled]="disabledProperty" [value]="disabledProperty">
+<button (click)="toggleProperty()">{{ disabledProperty ? "Enable" : "Disbale" }}</button>
+<!-- conditions (*ngIf) -->
+<!-- <h1 *ngIf="show else elseBlock">
+    if block
+</h1> -->
+<h1 *ngIf="show then ifBlock else elseBlock"></h1>
+<ng-template #ifBlock>
+    <h1>if block</h1>
+</ng-template>
+<ng-template #elseBlock>
+    <h1>else block</h1>
+</ng-template>
+<!-- multiple conditions if-elseif -->
+<ng-template [ngIf]="color=='red'">
+    <h1 style="color: red;">red block</h1>
+</ng-template>
+<ng-template [ngIf]="color=='blue'">
+    <h1 style="color: blue;">blue block</h1>
+</ng-template>
+<ng-template [ngIf]="color=='green'">
+    <h1 style="color: green;">green block</h1>
+</ng-template>
+<!-- for loop -->
+<ul *ngFor="let item of myList">
+    <li>{{ item }}</li>
+</ul>
+<hr>

@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { HttpClientModule } from '@angular/common/http'
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -14,10 +15,11 @@ import { HttpClientModule } from '@angular/common/http'
   imports: [
     BrowserModule,
     AppRoutingModule,
-    UsersModule,
     FormsModule,
     FlexLayoutModule,
-    HttpClientModule
+    HttpClientModule,
+    UsersModule,
+    AdminModule
   ],
   providers: [],
   bootstrap: [AppComponent]
