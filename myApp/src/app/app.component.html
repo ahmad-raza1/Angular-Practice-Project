@@ -1,3 +1,18 @@
+<!-- render data coming from an API -->
+<table border="1" class="table">
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Status</th>
+    </tr>
+    <tr *ngFor="let item of data">
+        <td>{{ item.id }}</td>
+        <td>{{ item.title }}</td>
+        <td>{{ item.completed ? 'Completed': 'Not Completed' }}</td>
+    </tr>
+</table>
+
+<hr>
 <!-- simple form -->
 <form #myForm="ngForm" (ngSubmit)="getUserValues(myForm.value)" layout="column"
 style="align-items: center;">
