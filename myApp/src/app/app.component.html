@@ -1,6 +1,29 @@
 <!-- Lazy Loading Component -->
 <button (click)="loadAdmin()">Load Admin Component</button>
 <button (click)="loadUser()">Load User Component</button>
+<hr>
+
+<!-- forms -->
+<h2>Angular Template Driven Form</h2>
+<form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)">
+    <div>
+        <input name="email" type="text" ngModel #name="ngModel" required><br>
+        <span *ngIf="name.invalid && name.touched" class="color-red">required*</span>
+    </div>
+    <br>
+    <div>
+        <input name="password" type="password" ngModel #password="ngModel" required><br>
+        <span *ngIf="password.invalid && password.touched" class="color-red">required</span>
+    </div>
+    <br>
+    <button type="submit" [disabled]="name.invalid">Login</button>
+</form>
+<br>
+<!-- form data -->
+<div *ngIf="formData">
+    Email: {{formData.email}}, Password: {{formData.password}}
+</div>
+<hr>
 
 <!-- routing -->
 <!-- <h2>Admin Routes</h2>

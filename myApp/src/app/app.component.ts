@@ -1,13 +1,16 @@
 import { Component, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
+import { Form } from '@angular/forms';
 import { UsersService } from './users.service';
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
 
   title = 'blog';
+  formData! : any;
 
   constructor(
     private vcr: ViewContainerRef,
@@ -28,6 +31,11 @@ export class AppComponent {
     this.vcr.createComponent(
       this.cfr.resolveComponentFactory(ListComponent)
     );
+  }
+
+  onSubmit(data: any) {
+    console.warn(data);
+    this.formData = data;
   }
 
   // data: any = [];
