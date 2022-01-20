@@ -1,5 +1,5 @@
 import { Component, ViewContainerRef, ComponentFactoryResolver } from '@angular/core';
-import { Form } from '@angular/forms';
+import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
 import { UsersService } from './users.service';
 @Component({
   selector: 'app-root',
@@ -9,8 +9,20 @@ import { UsersService } from './users.service';
 
 export class AppComponent {
 
+  loginForm = new FormGroup({
+    email: new FormControl('', Validators.compose(
+      [Validators.required, Validators.email]
+    )),
+    password: new FormControl('', Validators.compose(
+      [Validators.required, Validators.minLength(8)]
+    ))
+  });
+
+  get email() { return this.loginForm.get('email') }
+  get password() { return this.loginForm.get('password') }
+
   title = 'blog';
-  formData! : any;
+  formData!: any;
 
   constructor(
     private vcr: ViewContainerRef,
@@ -36,6 +48,11 @@ export class AppComponent {
   onSubmit(data: any) {
     console.warn(data);
     this.formData = data;
+  }
+
+  reactiveFormSubmit() {
+    console.warn(this.loginForm.value);
+    this.formData = this.loginForm.value;
   }
 
   // data: any = [];

@@ -3,12 +3,16 @@
 <button (click)="loadUser()">Load User Component</button>
 <hr>
 
-<!-- forms -->
-<h2>Angular Template Driven Form</h2>
+<!---------------------
+**** Angular Forms ****
+---------------------->
+
+<!-- Exp 1 -->
+<!-- <h2>Angular Template Driven Form</h2>
 <form #userForm="ngForm" (ngSubmit)="onSubmit(userForm.value)">
     <div>
-        <input name="email" type="text" ngModel #name="ngModel" required><br>
-        <span *ngIf="name.invalid && name.touched" class="color-red">required*</span>
+        <input name="email" type="email" ngModel #email="ngModel" required><br>
+        <span *ngIf="email.invalid && email.touched" class="color-red">required*</span>
     </div>
     <br>
     <div>
@@ -16,9 +20,30 @@
         <span *ngIf="password.invalid && password.touched" class="color-red">required</span>
     </div>
     <br>
-    <button type="submit" [disabled]="name.invalid">Login</button>
+    <button type="submit" [disabled]="userForm.invalid">Login</button>
+</form>
+<br> -->
+
+<!-- Exp 2 -->
+<h2>Angular Reactive Form</h2>
+<form [formGroup]="loginForm" (ngSubmit)="reactiveFormSubmit()">
+    <div>
+        <input name="email" type="email" id="email" placeholder="Email" ngModel formControlName="email"><br>
+        <span *ngIf="email?.value=='' && email?.touched" class="color-red">required*</span>
+        <span *ngIf="email?.value!='' && email?.invalid" class="color-red">Invalid Email!</span>
+    </div>
+    <br>
+    <div>
+        <input name="password" type="password" placeholder="Password" ngModel formControlName="password"><br>
+        <span *ngIf="password?.value=='' && password?.touched;" class="color-red">required*</span>
+        <span *ngIf="password?.value!='' && password?.invalid" class="color-red">Password must be 8 characters
+            long!</span>
+    </div>
+    <br>
+    <button type="submit" [disabled]="loginForm.invalid">Login</button>
 </form>
 <br>
+
 <!-- form data -->
 <div *ngIf="formData">
     Email: {{formData.email}}, Password: {{formData.password}}
